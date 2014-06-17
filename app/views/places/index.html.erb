@@ -1,0 +1,35 @@
+<h1>Places</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Edit</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+      <th>Website</th>
+      <th>Happy Hour</th>
+      <th>Notes</th>
+      <th>Categories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @places.each do |place| %>
+    <tr>
+      <td><%= link_to "Edit", edit_place_path(place["key"] || "foo") %></td>
+      <td><%= place["name"] %></td>
+      <td><%= place["address"] %></td>
+      <td><%= number_to_phone(place["phone"], area_code: true) %></td>
+      <td><%= link_to place["url"], place["url"], target: :blank %></td>
+      <td><%= place["happyhour"] %></td>
+      <td><%= place["notes"] %></td>
+      <td>
+        <ul class="categories">
+        <% place["categories"].each do |cat| %>
+          <li><%= cat %></li>
+        <% end %>
+        </ul>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
