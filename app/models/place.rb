@@ -5,7 +5,7 @@ class Place
   end
 
   def self.get key
-    place = $redis.get(key)
+    place = $redis.get("eve:#{key}")
     JSON.parse(place) if place
   end
 
@@ -17,6 +17,7 @@ class Place
 
   def self.update key, value
     return false if value.empty? || value.nil?
+    value["key"] = key
     return key if $redis.set("eve:#{key}", value.to_json) == "OK"
   end
 

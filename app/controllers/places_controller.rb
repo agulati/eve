@@ -16,7 +16,7 @@ class PlacesController < ApplicationController
   def create
     Place.create(params["place"])
     # create flash message
-    render :index
+    redirect_to :root
   end
 
   # GET
@@ -26,15 +26,17 @@ class PlacesController < ApplicationController
 
   # PUT
   def update
-    Place.update(params["key"], params["place"])
+    params["place"]["specials"].gsub!("\r\n","<br/>")
+    params["place"]["notes"].gsub!("\r\n","<br/>")
+    # Place.update(params[:id], params["place"])
     # create flash message
-    render :index
+    redirect_to :root
   end
 
   # DELETE
   def destroy
     Place.delete(params[:id])
     # create flash message
-    render :index
+    redirect_to :root
   end
 end
