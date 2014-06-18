@@ -1,31 +1,37 @@
 <h1>Places</h1>
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Edit</th>
-      <th>Name</th>
+      <th class="icons"></th>
+      <th class="narrow">Name</th>
       <th>Address</th>
       <th>Phone Number</th>
-      <th>Website</th>
-      <th>Happy Hour</th>
-      <th>Notes</th>
+      <th class="wide">Website</th>
+      <th class="wide">Happy Hour / Specials</th>
+      <th class="wide">Notes</th>
       <th>Categories</th>
     </tr>
   </thead>
   <tbody>
     <% @places.each do |place| %>
     <tr>
-      <td><%= link_to "Edit", edit_place_path(place["key"] || "foo") %></td>
-      <td><%= place["name"] %></td>
-      <td><%= place["address"] %></td>
-      <td><%= number_to_phone(place["phone"], area_code: true) %></td>
-      <td><%= link_to place["url"], place["url"], target: :blank %></td>
-      <td><%= place["happyhour"] %></td>
-      <td><%= place["notes"] %></td>
       <td>
-        <ul class="categories">
-        <% place["categories"].each do |cat| %>
+        <%= image_tag "delete.png", class: "delete", title: "Delete" %>
+        <%= image_tag "edit.png", class: "edit", title: "Edit" %>
+        <input type="hidden" value="<%=place["key"]%>"/>
+      </td>
+      <td><%= place["name"].html_safe %></td>
+      <td><%= place["address"].html_safe if place["address"] %></td>
+      <td><%= number_to_phone(place["phone"], area_code: true) if place["phone"] %></td>
+      <td><%= !!place["url"] ? link_to(place["url"][0..25], place["url"], target: :blank, title: place["url"]) : "" %></td>
+      <td><%= place["specials"].html_safe if place["specials"] %></td>
+      <td><%= place["notes"].html_safe if place["notes"] %></td>
+      <td>
+        <ul class="tags">
+        <% if place["tags"] %>
+        <% place["tags"].each do |cat| %>
           <li><%= cat %></li>
+        <% end %>
         <% end %>
         </ul>
       </td>

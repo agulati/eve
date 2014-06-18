@@ -9,14 +9,15 @@ class Place
     JSON.parse(place) if place
   end
 
+  def self.create value
+    value[:key] = SecureRandom.uuid
+    value[:phone] = value[:phone].gsub("(","").gsub(")","").gsub("-","").gsub(" ","") if value[:phone]
+    return value[:key] if $redis.set("eve:#{value[:key]}", value.to_json) == "OK"
+  end
+
   def self.update key, value
     return false if value.empty? || value.nil?
     return key if $redis.set("eve:#{key}", value.to_json) == "OK"
-  end
-
-  def self.create value
-    value["key"] = SecureRandom.uuid
-    return value["key"] if $redis.set("eve:#{value["key"]}", value.to_json)
   end
 
   def self.delete key

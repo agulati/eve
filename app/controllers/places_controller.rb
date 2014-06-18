@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
   # GET
   def index
     # display flash messages
-    @places = Place.all
+    @places = Place.all.sort { |a,b| a["name"] <=> b["name"] }
   end
 
   # GET
