@@ -15,3 +15,9 @@ img.edit,
 img.delete {
   cursor: pointer;
 }
+footer {
+  margin-top: 20px;
+}
+select.tags {
+  height: 300px;
+}
