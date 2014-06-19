@@ -3,7 +3,7 @@ module PlacesHelper
     if tag == "none"
       return "selected" if ( @place["tags"].nil? || @place["tags"].empty? )
     else
-      return "selected" if @place["tags"].include?(tag)
+      return "selected" if @place["tags"] && @place["tags"].include?(tag)
     end
   end
 end

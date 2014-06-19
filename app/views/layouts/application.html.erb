@@ -7,6 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <ul class="nav nav-tabs">
+    <li class="<%= active_tab("places")%>"><a href="/places">Places</a></li>
+    <li class="<%= active_tab("tags")%>"><a href="/tags">Tags</a></li>
+  </ul>
   <div class="container">
     <%= yield %>
   </div>

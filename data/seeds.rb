@@ -274,17 +274,17 @@ Place.create({ name: "Yerba Buena",address: "23 Avenue A",phone: "(212) 529-2919
 Place.create({ name: "Zerza Bar",address: "320 E 6th St",phone: "(212) 529-8250",  url: "http://www.zerza.com/" })
 Place.create({ name: "Zum Schneider Bavarian Beer House",address: "107 Avenue C",phone: "(212) 598-1098",  url: "http://www.zumschneider.com/" })
 
-Tag.update([
-"monday",
-"tuesday",
-"wednesday",
-"thursday",
-"friday",
-"saturday",
-"sunday",
-"brunch",
-"outdoor-seating",
-"live-music",
-"food",
-"dj"
-])
+Tag.set({
+"monday" => "Monday",
+"tuesday" => "Tuesday",
+"wednesday" => "Wednesday",
+"thursday" => "Thursday",
+"friday" => "Friday",
+"saturday" => "Saturday",
+"sunday" => "Sunday",
+"brunch" => "Brunch",
+"outdoor-seating" => "Outdoor Seating",
+"live-music" => "Live Music",
+"food" => "Food",
+"dj" => "DJ"
+})
