@@ -31,13 +31,11 @@
   </div>
 
   <div class="form-group">
+    <ul class="edit-tags">
     <label for="place[tags]">Tags</label>
-    <select multiple name="place[tags][]" class="form-control tags">
-      <option value="none" <%= "selected" if select_tag("none") %>>None</option>
-      <% @tags.each do |value, display| %>
-      <option value="<%=value%>" <%= "selected" if select_tag(value) %>><%=display%></option>
-      <% end %>
-    </select>
+    <% @tags.each do |value, display| %>
+    <li><input type="checkbox" name="place[tags][]" value="<%=value%>" <%= "checked" if select_tag(value) %>><%=display%></li>
+    <% end %>
   </div>
 
   <button type="submit" class="btn btn-default">Submit</button>

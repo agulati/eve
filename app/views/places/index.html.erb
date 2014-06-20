@@ -8,8 +8,9 @@
       <th>Phone Number</th>
       <th class="wide">Website</th>
       <th class="wide">Happy Hour / Specials</th>
+      <th class="wide">Categories</th>
       <th class="wide">Notes</th>
-      <th>Categories</th>
+      <th>Tags</th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +26,7 @@
       <td><%= number_to_phone(place["phone"], area_code: true) if place["phone"] %></td>
       <td><%= !!place["url"] ? link_to(place["url"][0..25], place["url"], target: :blank, title: place["url"]) : "" %></td>
       <td><%= place["specials"].html_safe if place["specials"] %></td>
+      <td><%= place["categories"].html_safe if place["categories"] %></td>
       <td><%= place["notes"].html_safe if place["notes"] %></td>
       <td>
         <ul class="tags">

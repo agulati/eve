@@ -9,7 +9,7 @@ th.narrow {
   width: 100px;
 }
 th.icons {
-  width: 60px;
+  width: 70px;
 }
 img.edit,
 img.delete {
@@ -18,10 +18,13 @@ img.delete {
 footer {
   margin-top: 20px;
 }
-select.tags {
-  height: 300px;
-}
 .row.tag {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+ul.edit-tags li {
+  padding: 5px 0;
+}
+ul.edit-tags li input {
+  margin-right: 10px;
 }
