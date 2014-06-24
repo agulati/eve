@@ -47,7 +47,7 @@ class PlacesController < ApplicationController
   def format_as_text place
     place["specials"].gsub!("<br/>", "\r\n") if place["specials"]
     place["notes"].gsub!("<br/>", "\r\n") if place["notes"]
-    place["tags"] = "none" if place["tags"].empty?
+    place["tags"] = "none" unless place["tags"] && !place["tags"].empty?
     place
   end
 
