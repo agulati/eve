@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  protect_from_forgery with: :null_session
+  before_filter :set_access_control_headers
 
   def places
     @places = Place.all.sort { |a,b| a["name"] <=> b["name"] }
@@ -8,7 +8,14 @@ class ApiController < ApplicationController
   end
 
   def tags
-    render :json => Tag.get
+    tags = Tag.get
+    p tags
+    render :json => tags
+  end
+
+  def set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Request-Method'] = '*'
   end
 
 end

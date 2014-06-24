@@ -14,7 +14,7 @@ class PlacesController < ApplicationController
 
   # POST
   def create
-    cleanup_params(params)
+    format_as_html(params)
     Place.create(params["place"])
     # create flash message
     redirect_to :root
@@ -22,13 +22,14 @@ class PlacesController < ApplicationController
 
   # GET
   def edit
-    @place = Place.get(params[:id])
+    p format_as_text(Place.get(params[:id]))
+    @place = format_as_text(Place.get(params[:id]))
     @tags = Tag.get
   end
 
   # PUT
   def update
-    cleanup_params(params)
+    format_as_html(params)
     Place.update(params[:id], params["place"])
     # create flash message
     redirect_to :root
@@ -43,7 +44,14 @@ class PlacesController < ApplicationController
 
   private
 
-  def cleanup_params params
+  def format_as_text place
+    place["specials"].gsub!("<br/>", "\r\n") if place["specials"]
+    place["notes"].gsub!("<br/>", "\r\n") if place["notes"]
+    place["tags"] = "none" if place["tags"].empty?
+    place
+  end
+
+  def format_as_html params
     params["place"]["specials"].gsub!("\r\n","<br/>")
     params["place"]["notes"].gsub!("\r\n","<br/>")
     params["place"]["tags"] = [] if params["place"]["tags"].include?("none")
