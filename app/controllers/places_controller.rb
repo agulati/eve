@@ -54,6 +54,6 @@ class PlacesController < ApplicationController
   def format_as_html params
     params["place"]["specials"].gsub!("\r\n","<br/>")
     params["place"]["notes"].gsub!("\r\n","<br/>")
-    params["place"]["tags"] = [] if params["place"]["tags"].include?("none")
+    params["place"]["tags"] = [] if params["place"]["tags"].nil? || params["place"]["tags"].include?("none")
   end
 end
