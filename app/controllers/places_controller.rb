@@ -10,6 +10,7 @@ class PlacesController < ApplicationController
   # GET
   def new
     @place = {}
+    @tags = Tag.get
   end
 
   # POST
@@ -54,6 +55,6 @@ class PlacesController < ApplicationController
   def format_as_html params
     params["place"]["specials"].gsub!("\r\n","<br/>")
     params["place"]["notes"].gsub!("\r\n","<br/>")
-    params["place"]["tags"] = [] if params["place"]["tags"].nil? || params["place"]["tags"].include?("none")
+    params["place"]["tags"] = [] if !params["place"]["tags"] || params["place"]["tags"].include?("none")
   end
 end

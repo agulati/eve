@@ -12,7 +12,8 @@ th.icons {
   width: 70px;
 }
 img.edit,
-img.delete {
+img.delete,
+img.add {
   cursor: pointer;
 }
 footer {
