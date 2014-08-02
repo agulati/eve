@@ -12,24 +12,30 @@
     </div>
   </div>
 
-  <% @tags.each_with_index do |(value, display), index| %>
+  <% @tags.each do |tag| %>
   <div class="row tag">
-    <div class="col-xs-6">
-      <input type="text" class="form-control" name="values[]" value="<%=value%>">
+    <div class="col-xs-1">
+      <input type="text" class="form-control" name="tags[][order]" value="<%=tag["order"]%>">
+    </div>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="tags[][value]" value="<%=tag["value"]%>">
     </div>
     <div class="col-xs-6">
-      <input type="text" class="form-control" name="displays[]" value="<%=display%>">
+      <input type="text" class="form-control" name="tags[][display]" value="<%=tag["display"]%>">
     </div>
   </div>
   <% end %>
 
-  <% for extras in 1..(20-@tags.length) %>
+  <% for extras in 1..5 %>
   <div class="row tag">
-    <div class="col-xs-6">
-      <input type="text" class="form-control" name="values[]">
+    <div class="col-xs-1">
+      <input type="text" class="form-control" name="tags[][order]">
+    </div>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" name="tags[][value]">
     </div>
     <div class="col-xs-6">
-      <input type="text" class="form-control" name="displays[]">
+      <input type="text" class="form-control" name="tags[][display]">
     </div>
   </div>
   <% end %>

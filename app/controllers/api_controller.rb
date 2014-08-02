@@ -8,8 +8,7 @@ class ApiController < ApplicationController
   end
 
   def tags
-    tags = Tag.get
-    p tags
+    tags = Tag.get.sort { |a,b| a["order"].to_i <=> b["order"].to_i }
     render :json => tags
   end
 
