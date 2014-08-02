@@ -34,8 +34,8 @@
   <div class="form-group">
     <ul class="edit-tags">
     <label for="place[tags]">Tags</label>
-    <% @tags.each do |value, display| %>
-    <li><input type="checkbox" name="place[tags][]" value="<%=value%>" <%= "checked" if select_tag(value) %>><%=display%></li>
+    <% @tags.each do |tag| %>
+    <li><input type="checkbox" name="place[tags][]" value="<%=tag["value"]%>" <%= "checked" if select_tag(tag["value"]) %>><%=tag["display"]%></li>
     <% end %>
   </div>
 
